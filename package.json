@@ -9,8 +9,12 @@
     "storybook": "start-storybook -p 8080"
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^5.3.18",
+    "@storybook/addon-backgrounds": "^5.3.18",
     "@storybook/addon-centered": "^5.3.18",
     "@storybook/addon-info": "^5.3.18",
+    "@storybook/addon-knobs": "^5.3.18",
+    "@storybook/addon-viewport": "^5.3.18",
     "@storybook/react": "^5.3.18",
     "@types/react": "^16.9.34",
     "babel-loader": "^8.1.0",
