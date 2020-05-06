@@ -1,7 +1,11 @@
-import * as React from "react";
+import * as React from 'react';
 
-const Button: React.FC = ({ children }) => {
+interface Props {
+  /**
+   * This is a prop
+   */
+}
+
+export const Button: React.FC<Props> = ({ children }) => {
   return <button>{children}</button>;
 };
-
-export default Button;
