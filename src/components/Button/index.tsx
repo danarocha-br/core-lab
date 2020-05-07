@@ -7,5 +7,5 @@ interface Props {
 }
 
 export const Button: React.FC<Props> = ({ children }) => {
-  return <button>{children}</button>;
+  return <button className="text-red-300">{children}</button>;
 };
