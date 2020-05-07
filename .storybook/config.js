@@ -2,10 +2,13 @@ import { configure, addParameters, addDecorator } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import centered from '@storybook/addon-centered/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { withA11y } from '@storybook/addon-a11y';
 
 import theme from './theme';
 
 import './reset.css';
+
+addDecorator(withA11y);
 
 addParameters({
   viewport: {
