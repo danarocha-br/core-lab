@@ -3,18 +3,18 @@ import { create } from '@storybook/theming';
 export default create({
   base: 'dark',
 
-  colorSecondary: '#7159c1',
+  colorSecondary: '#453EEB',
 
-  appBg: '#0b0a0d',
-  appContentBg: '#16161A',
-  appBorderColor: '#7159c1',
+  appBg: '#1F2533',
+  appContentBg: '#1F2533',
+  appBorderColor: '#667AA3',
 
   textColor: '#fff',
 
   // Toolbar default and active colors
-  barTextColor: '#E6E6E6',
+  barTextColor: '#FBFCFF',
   barSelectedColor: '#ffffff',
-  barBg: '#1b1a1f',
+  barBg: '#323D53',
 
   brandTitle: 'Core Lab Docs',
   brandUrl: 'https://www.danarocha.com.br/',

@@ -6,7 +6,7 @@
   "author": "Dana Rocha <dana@danarocha.com.br>",
   "license": "MIT",
   "scripts": {
-    "storybook": "start-storybook -p 8080 && npm run watch:css",
+    "storybook": "start-storybook -p 8080",
     "build": "npm run build:css",
     "build:css": "postcss src/styles/tailwind.css -o src/styles/main.css",
     "watch:css": "postcss src/styles/tailwind.css -o src/styles/main.css -w"
@@ -20,13 +20,31 @@
     "@storybook/addon-viewport": "^5.3.18",
     "@storybook/react": "^5.3.18",
     "@types/react": "^16.9.34",
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.31.0",
+    "add": "^2.0.6",
     "autoprefixer": "^9.7.6",
     "babel-loader": "^8.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.0",
     "postcss-cli": "^7.1.1",
+    "postcss-custom-properties": "^9.1.1",
+    "postcss-import": "^12.0.1",
+    "postcss-nesting": "^7.0.1",
+    "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-docgen-typescript-loader": "^3.7.2",
     "tailwindcss": "^1.4.5",
     "ts-loader": "^7.0.2",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "uncss": "^0.17.3",
+    "yarn": "^1.22.4"
   }
 }

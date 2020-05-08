@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 interface Props {
   /**
@@ -7,5 +7,9 @@ interface Props {
 }
 
 export const Button: React.FC<Props> = ({ children }) => {
-  return <button className="text-red-300">{children}</button>;
+  return (
+    <button type="button" className="theme-primary bg-background-primary">
+      {children}
+    </button>
+  );
 };

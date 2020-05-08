@@ -1,2 +1,8 @@
-@tailwind base;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import './base/global.css';
+
+@import './themes/light.css';
+@import './themes/dark.css';
+@import './components.css';
+
+@import 'tailwindcss/utilities';

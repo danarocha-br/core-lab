@@ -15,19 +15,26 @@ module.exports = {
       transparent: 'transparent',
       current: 'currentColor',
 
+      background: {
+        primary: 'var(--bg-background-primary)',
+        secondary: 'var(--bg-background-secondary)',
+        ternary: 'var(--bg-background-ternary)',
+        shade: 'var(--bg-background-shade)',
+      },
+
       black: '#000',
       white: '#fff',
 
       gray: {
-        100: '#f7fafc',
-        200: '#edf2f7',
-        300: '#e2e8f0',
-        400: '#cbd5e0',
-        500: '#a0aec0',
-        600: '#718096',
-        700: '#4a5568',
-        800: '#2d3748',
-        900: '#1a202c',
+        100: '#FBFCFF',
+        200: '#F1F5FE',
+        300: '#E4EAF6',
+        400: '#D4DBE8',
+        500: '#C2CBDB',
+        600: '#B3BDD1',
+        700: '#8C9CBA',
+        800: '#667AA3',
+        900: '#323D53',
       },
       red: {
         100: '#fff5f5',
@@ -39,17 +46,6 @@ module.exports = {
         700: '#c53030',
         800: '#9b2c2c',
         900: '#742a2a',
-      },
-      orange: {
-        100: '#fffaf0',
-        200: '#feebc8',
-        300: '#fbd38d',
-        400: '#f6ad55',
-        500: '#ed8936',
-        600: '#dd6b20',
-        700: '#c05621',
-        800: '#9c4221',
-        900: '#7b341e',
       },
       yellow: {
         100: '#fffff0',
@@ -73,17 +69,6 @@ module.exports = {
         800: '#276749',
         900: '#22543d',
       },
-      teal: {
-        100: '#e6fffa',
-        200: '#b2f5ea',
-        300: '#81e6d9',
-        400: '#4fd1c5',
-        500: '#38b2ac',
-        600: '#319795',
-        700: '#2c7a7b',
-        800: '#285e61',
-        900: '#234e52',
-      },
       blue: {
         100: '#ebf8ff',
         200: '#bee3f8',
@@ -103,30 +88,8 @@ module.exports = {
         500: '#667eea',
         600: '#5a67d8',
         700: '#4c51bf',
-        800: '#434190',
-        900: '#3c366b',
-      },
-      purple: {
-        100: '#faf5ff',
-        200: '#e9d8fd',
-        300: '#d6bcfa',
-        400: '#b794f4',
-        500: '#9f7aea',
-        600: '#805ad5',
-        700: '#6b46c1',
-        800: '#553c9a',
-        900: '#44337a',
-      },
-      pink: {
-        100: '#fff5f7',
-        200: '#fed7e2',
-        300: '#fbb6ce',
-        400: '#f687b3',
-        500: '#ed64a6',
-        600: '#d53f8c',
-        700: '#b83280',
-        800: '#97266d',
-        900: '#702459',
+        800: '#645EF3',
+        900: '#453EEB',
       },
     },
     spacing: {
@@ -150,8 +113,8 @@ module.exports = {
       '56': '14rem',
       '64': '16rem',
     },
-    backgroundColor: theme => theme('colors'),
-    backgroundOpacity: theme => theme('opacity'),
+    backgroundColor: (theme) => theme('colors'),
+    backgroundOpacity: (theme) => theme('opacity'),
     backgroundPosition: {
       bottom: 'bottom',
       center: 'center',
@@ -168,11 +131,11 @@ module.exports = {
       cover: 'cover',
       contain: 'contain',
     },
-    borderColor: theme => ({
+    borderColor: (theme) => ({
       ...theme('colors'),
       default: theme('colors.gray.300', 'currentColor'),
     }),
-    borderOpacity: theme => theme('opacity'),
+    borderOpacity: (theme) => theme('opacity'),
     borderRadius: {
       none: '0',
       sm: '0.125rem',
@@ -191,10 +154,14 @@ module.exports = {
     boxShadow: {
       xs: '0 0 0 1px rgba(0, 0, 0, 0.05)',
       sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-      default: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-      md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-      lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-      xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+      default:
+        '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+      md:
+        '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+      lg:
+        '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+      xl:
+        '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
       '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
       inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
       outline: '0 0 0 3px rgba(66, 153, 225, 0.5)',
@@ -210,9 +177,9 @@ module.exports = {
       move: 'move',
       'not-allowed': 'not-allowed',
     },
-    divideColor: theme => theme('borderColor'),
-    divideOpacity: theme => theme('borderOpacity'),
-    divideWidth: theme => theme('borderWidth'),
+    divideColor: (theme) => theme('borderColor'),
+    divideOpacity: (theme) => theme('borderOpacity'),
+    divideWidth: (theme) => theme('borderWidth'),
     fill: {
       current: 'currentColor',
     },
@@ -246,8 +213,6 @@ module.exports = {
         '"Segoe UI Symbol"',
         '"Noto Color Emoji"',
       ],
-      serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
-      mono: ['Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
     },
     fontSize: {
       xs: '0.75rem',
@@ -272,7 +237,7 @@ module.exports = {
       extrabold: '800',
       black: '900',
     },
-    height: theme => ({
+    height: (theme) => ({
       auto: 'auto',
       ...theme('spacing'),
       full: '100%',
@@ -379,9 +344,9 @@ module.exports = {
       '11': '11',
       '12': '12',
     },
-    padding: theme => theme('spacing'),
-    placeholderColor: theme => theme('colors'),
-    placeholderOpacity: theme => theme('opacity'),
+    padding: (theme) => theme('spacing'),
+    placeholderColor: (theme) => theme('colors'),
+    placeholderOpacity: (theme) => theme('opacity'),
     space: (theme, { negative }) => ({
       ...theme('spacing'),
       ...negative(theme('spacing')),
@@ -394,9 +359,9 @@ module.exports = {
       '1': '1',
       '2': '2',
     },
-    textColor: theme => theme('colors'),
-    textOpacity: theme => theme('opacity'),
-    width: theme => ({
+    textColor: (theme) => theme('colors'),
+    textOpacity: (theme) => theme('opacity'),
+    width: (theme) => ({
       auto: 'auto',
       ...theme('spacing'),
       '1/2': '50%',
@@ -437,7 +402,7 @@ module.exports = {
       '40': '40',
       '50': '50',
     },
-    gap: theme => theme('spacing'),
+    gap: (theme) => theme('spacing'),
     gridTemplateColumns: {
       none: 'none',
       '1': 'repeat(1, minmax(0, 1fr))',
@@ -590,7 +555,8 @@ module.exports = {
     transitionProperty: {
       none: 'none',
       all: 'all',
-      default: 'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
+      default:
+        'background-color, border-color, color, fill, stroke, opacity, box-shadow, transform',
       colors: 'background-color, border-color, color, fill, stroke',
       opacity: 'opacity',
       shadow: 'box-shadow',
@@ -724,4 +690,4 @@ module.exports = {
   },
   corePlugins: {},
   plugins: [],
-}
+};
