@@ -138,11 +138,11 @@ module.exports = {
     borderOpacity: (theme) => theme('opacity'),
     borderRadius: {
       none: '0',
-      sm: '0.125rem',
-      default: '0.25rem',
-      md: '0.375rem',
-      lg: '0.5rem',
-      full: '9999px',
+      sm: '0.2rem',
+      default: '0.3rem',
+      md: '0.4rem',
+      lg: '0.7rem',
+      full: '50%',
     },
     borderWidth: {
       default: '1px',
@@ -199,6 +199,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
+        'DM Sans',
         'system-ui',
         '-apple-system',
         'BlinkMacSystemFont',

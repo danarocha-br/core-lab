@@ -8,7 +8,7 @@ interface Props {
 
 export const Button: React.FC<Props> = ({ children }) => {
   return (
-    <button type="button" className="theme-primary bg-background-primary">
+    <button type="button" className="theme-light bg-background-primary">
       {children}
     </button>
   );

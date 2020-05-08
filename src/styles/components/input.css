@@ -1,0 +1,49 @@
+.input {
+  @apply relative flex w-full align-top m-4 overflow-hidden border rounded-sm;
+  z-index: 1;
+
+  &__field {
+    @apply text-base absolute flex w-full float-right border-none z-50 bg-transparent;
+    padding: 2.2em 1.4em 0;
+    -webkit-appearance: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__label {
+    @apply flex w-full h-full font-medium text-sm text-left rounded-sm float-right p-0;
+    padding: 0 1em;
+    -webkit-touch-callout: none;
+    user-select: none;
+
+    &::before {
+      @apply absolute top-0 left-0 w-full h-full rounded-sm;
+      content: '';
+      border: solid transparent;
+      transition: border-width 0.3s, border-color 0.3s;
+    }
+
+    &-content {
+      @apply relative flex w-full;
+      padding: 2em 1em;
+      transform-origin: 0% 50%;
+      transition: transform 0.3s, color 0.3s;
+      text-rendering: geometricPrecision;
+    }
+  }
+}
+
+.input__field:focus + .input__label:before,
+.input--filled .input__label:before {
+  @apply border-white;
+  border-width: 10px;
+  border-top-width: 2.2em;
+}
+
+.input__field:focus + .input__label .input__label-content,
+.input--filled .input__label .input__label-content {
+  transform: translate3d(-0.8em, -1.5em, 0) scale3d(0.85, 0.85, 1)
+    translateZ(1px);
+}
