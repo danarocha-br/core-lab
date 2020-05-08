@@ -3,34 +3,37 @@
   z-index: 1;
 
   &__field {
-    @apply text-base absolute flex w-full float-right border-none z-50 bg-transparent;
+    @apply text-base bg-transparent absolute flex w-full float-right border-none z-50;
     padding: 2.2em 1.4em 0;
     -webkit-appearance: none;
 
-    &:focus {
+    @variants focus {
       outline: none;
     }
   }
 
   &__label {
-    @apply flex w-full h-full font-medium text-sm text-left rounded-sm float-right p-0;
+    @apply font-medium text-sm text-left flex items-center w-full h-full float-right p-0;
     padding: 0 1em;
     -webkit-touch-callout: none;
     user-select: none;
 
     &::before {
-      @apply absolute top-0 left-0 w-full h-full rounded-sm;
+      @apply absolute top-0 left-0 w-full h-full;
       content: '';
       border: solid transparent;
       transition: border-width 0.3s, border-color 0.3s;
     }
 
     &-content {
-      @apply relative flex w-full;
+      @apply relative flex w-full transition-transform duration-300;
       padding: 2em 1em;
       transform-origin: 0% 50%;
-      transition: transform 0.3s, color 0.3s;
       text-rendering: geometricPrecision;
+    }
+
+    svg {
+      @apply transition-transform duration-300;
     }
   }
 }
@@ -45,5 +48,10 @@
 .input__field:focus + .input__label .input__label-content,
 .input--filled .input__label .input__label-content {
   transform: translate3d(-0.8em, -1.5em, 0) scale3d(0.85, 0.85, 1)
+    translateZ(1px);
+}
+
+.input__field:focus + .input__label svg {
+  transform: translate3d(-0.3em, -1.5em, 0) scale3d(0.85, 0.85, 1)
     translateZ(1px);
 }
