@@ -6,8 +6,14 @@ import { Input } from '../src';
 
 export default {
   title: 'Form/Input',
+  // component: Input,
 };
 
-export const textOnly = () => <Input name="name" icon={AiOutlineMail} />;
+export const textOnly = () => (
+  <div className="flex vertical">
+    <Input name="email" icon={AiOutlineMail} label="Email" />
+    {/* <Input name="name" icon={AiOutlineMail} /> */}
+  </div>
+);
 
 // storiesOf('Input', module).add('Default', () => <Input />);

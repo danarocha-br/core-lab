@@ -6,6 +6,7 @@ module.exports = {
     '@storybook/addon-a11y/register',
     '@storybook/addon-backgrounds/register',
     '@storybook/addon-knobs/register',
+    'themeprovider-storybook/register',
   ],
   webpackFinal: async (config) => {
     config.module.rules.push({

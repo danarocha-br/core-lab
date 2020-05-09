@@ -15,20 +15,13 @@ module.exports = {
       transparent: 'transparent',
       current: 'currentColor',
 
-      background: {
-        primary: 'var(--bg-background-primary)',
-        secondary: 'var(--bg-background-secondary)',
-        ternary: 'var(--bg-background-ternary)',
-        shade: 'var(--bg-background-shade)',
-      },
-
       black: '#000',
       white: '#fff',
 
       gray: {
         100: '#FBFCFF',
-        200: '#F1F5FE',
-        300: '#E4EAF6',
+        200: '#ECF2FD',
+        300: '#DAE5FB',
         400: '#D4DBE8',
         500: '#C2CBDB',
         600: '#B3BDD1',
