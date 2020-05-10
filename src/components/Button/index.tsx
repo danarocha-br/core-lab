@@ -1,15 +1,17 @@
-// import React from 'react';
+import React from 'react';
 
-// interface Props {
-//   /**
-//    * This is a prop
-//    */
-// }
+import { Container } from './styles';
 
-// export const Button: React.FC<Props> = ({ children }) => {
-//   return (
-//     <button type="button" className="theme-light bg-background-primary">
-//       {children}
-//     </button>
-//   );
-// };
+interface Props {
+  /**
+   * This is a prop
+   */
+}
+
+export const Button: React.FC<Props> = ({ children }) => {
+  return (
+    <Container>
+      <h1>Test</h1>
+    </Container>
+  );
+};

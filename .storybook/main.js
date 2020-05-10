@@ -8,20 +8,24 @@ module.exports = {
     '@storybook/addon-knobs/register',
     'themeprovider-storybook/register',
   ],
-  webpackFinal: async (config) => {
-    config.module.rules.push({
-      test: /\.(ts|tsx)$/,
-      include: [path.resolve(__dirname, '..')],
-      use: [
-        {
-          loader: require.resolve('ts-loader'),
-        },
+  webpackFinal: async config => {
+    config.module.rules = [
+      ...config.module.rules,
+      {
+        test: /\.(ts|tsx)$/,
+        include: [path.resolve(__dirname, '..')],
+        use: [
+          {
+            loader: require.resolve("babel-loader"),
+            options: {
+              presets: [require.resolve("babel-preset-react-app")]
+            }
+          },
 
-        {
-          loader: require.resolve('react-docgen-typescript-loader'),
-        },
-      ],
-    });
+          require.resolve("react-docgen-typescript-loader")
+        ]
+      }
+    ],
 
     config.resolve.extensions.push('.ts', '.tsx');
     return config;
