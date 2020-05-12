@@ -1,12 +1,25 @@
 import styled, { css } from 'styled-components';
+import tw from 'tailwind.macro';
 
 interface UiStates {
   isFocused: boolean;
   hasValue: boolean;
+  hasError: boolean;
   isDisabled: boolean;
 }
 
-// Global Classes
+const handleSize = (size: string): string => {
+  switch (size) {
+    case 'xs':
+      return '1em 1em';
+    case 'md':
+      return '2em 1em';
+    default:
+      return '2em 1em';
+  }
+};
+
+// Global Classes for UI State Animations
 
 const inputBorder = `
   border: 10px solid;
@@ -18,12 +31,12 @@ const animateLabel = `
 
 const animateIcon = `
   margin-right: 6px;
-  transform: translate3d(-0.3em, -1.5em, 0) scale3d(1, 1, 1);
+  transform: translate3d(-0.3em, -1.5em, 0) scale3d(0.85, 0.85, 1);
   translateZ(1px);`;
 
 export const Container = styled.span.attrs({
   className:
-    'relative flex w-full align-top m-4 overflow-hidden border rounded-sm',
+    'relative flex items-center w-full align-top overflow-hidden border rounded-sm',
 })<UiStates>`
   border-color: ${({ theme }) => theme?.palette?.Form?.borderColor};
   z-index: 1;
@@ -33,10 +46,17 @@ export const Container = styled.span.attrs({
     css`
       border-color: ${({ theme }) => theme?.palette?.Base?.primary};
     `}
+    ${(props) =>
+      props.hasError &&
+      css`
+        border-color: ${({ theme }) => theme?.palette?.Form?.error};
+      `}
 
-  & input {
+  & {
+    input {
+      ${tw`text-lg bg-transparent absolute flex float-right border-none z-50 focus:outline-none`}
     color: ${({ theme }) => theme?.palette?.Form?.fontColor};
-    padding: 2.2em 1.4em 0;
+    padding: 1.24em 1.4em 0;
     -webkit-appearance: none;
 
     ${(props) =>
@@ -88,9 +108,10 @@ export const Container = styled.span.attrs({
       ${animateIcon}
       color: ${({ theme }) => theme?.palette?.Base?.primary};
     }
-  }
+  }}
 
   & label {
+    ${tw`font-medium text-base text-left flex items-center w-full h-full float-right p-0`};
     color: ${({ theme }) => theme?.palette?.Form?.placeholderColor};
     background-color: ${({ theme }) => theme?.palette?.Form?.backgroundColor};
     padding: 0 1em;
@@ -109,7 +130,7 @@ export const Container = styled.span.attrs({
     }
 
     & span {
-      padding: 2em 1em;
+      padding:  ${({ size }) => handleSize(size)};
       position: relative;
       display: flex;
       width: 100%;
@@ -124,4 +145,10 @@ export const Container = styled.span.attrs({
       transition-duration: 0.3s;
     }
   }
+`;
+
+export const Error = styled.span`
+  ${tw`text-base pt-2`}
+  color: ${({ theme }) => theme?.palette?.Form?.error};
+
 `;

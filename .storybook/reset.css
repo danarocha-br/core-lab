@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+#root > div > div {
+  width: 100%;
+}
+
 @media only screen and (min-width: 992px) {
   #root > div > div {
     width: 50%;

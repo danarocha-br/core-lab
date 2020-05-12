@@ -4,7 +4,6 @@ import centered from '@storybook/addon-centered/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { withA11y } from '@storybook/addon-a11y';
 import { withThemesProvider } from "themeprovider-storybook";
-// import dark from '../src/themes/dark';
 
 import theme from './theme';
 
@@ -39,12 +38,12 @@ const themes = [
         borderColor: 'rgba(194, 203, 219, .7)',
         placeholderColor: '#667AA3',
         opacityDisabled: 0.25,
-        borderError: '#e25a66',
+        error: '#e25a66',
       },
       Common: {
         backgroundColor: '#1a213f',
         fontColor: '#808ab1',
-        borderError: '#e25a66'
+        error: '#FF686B'
       },
     }
   },
@@ -62,12 +61,12 @@ const themes = [
         borderColor: 'rgba(255, 255, 255, .2)',
         placeholderColor: '#D4DBE8',
         opacityDisabled: 0.25,
-        borderError: '#e25a66',
+        error: '#FF8082',
       },
       Common: {
         backgroundColor: '#1a213f',
         fontColor: '#808ab1',
-        borderError: '#e25a66'
+        borderError: '#FF686B'
       },
     }
   }
