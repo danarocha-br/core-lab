@@ -9,19 +9,9 @@ interface UiStates {
   isFocused: boolean;
   hasValue: boolean;
   hasError: boolean;
-  isDisabled: boolean;
+  disabled?: boolean;
+  readOnly?: boolean;
 }
-
-const handleSize = (size: string): string => {
-  switch (size) {
-    case 'md':
-      return '1em 1em';
-    case 'lg':
-      return '2em 1em';
-    default:
-      return '2em 1em';
-  }
-};
 
 // Global Classes for UI State Animations
 
@@ -41,11 +31,19 @@ export const Container = styled.span.attrs({
 })<UiStates & UiProps>`
   border-color: ${({ theme }) => theme?.tokens?.form?.border};
   z-index: 1;
+  opacity: ${(props) => (props.disabled ? '0.5' : '1')};
 
-  &:hover {
+
+  &:hover:not([disabled])
+   {
     border-color: ${({ theme }) => theme?.tokens?.primary};
     transition: border-color 0.5s;
   }
+
+  &[readonly]:hover {
+    border-color: ${({ theme }) => theme?.tokens?.form?.border};
+  }
+
 
   ${(props) =>
     props.isFocused &&
@@ -71,6 +69,7 @@ export const Container = styled.span.attrs({
         padding: ${(props) =>
           props.small ? '0.7em 1.4em 0' : '1.24em 1.4em 0'};
         -webkit-appearance: none;
+        opacity: ${(props) => (props.disabled ? '0.5' : '1')};
 
     ${(props) =>
       props.isFocused &&
@@ -128,20 +127,26 @@ export const Container = styled.span.attrs({
         }
       `}
 
-    &:focus + label:before {
+    &:focus + label:before,
+    &:disabled + label:before,
+    &[readonly] + label:before {
       ${inputBorder}
       border-top-width: ${(props) => (props.small ? '1.28em' : '1.8em')};
       border-color: ${({ theme }) => theme?.tokens?.form?.shade};
     }
 
-    &:focus + label > span {
+    &:focus + label > span,
+    &:disabled + label > span,
+    &[readonly] + label > span {
       transform: ${(props) =>
         props.small
           ? 'translate3d(-0.8em, -1.15em, 0) scale3d(0.75, 0.75, 1)'
           : 'translate3d(-0.8em, -1.5em, 0) scale3d(0.8, 0.8, 1)'};
     }
 
-    &:focus + label > svg {
+    &:focus + label > svg,
+    &:disabled + label > svg,
+    &[readonly] + label > svg {
       ${animateIcon}
       transform: ${(props) =>
         props.small
@@ -149,6 +154,20 @@ export const Container = styled.span.attrs({
           : 'translate3d(-0.3em, -1.5em, 0) scale3d(0.85, 0.85, 1)'};
       color: ${({ theme }) => theme?.tokens?.primary};
     }
+
+    &:disabled,
+    &[readonly] {
+      cursor: not-allowed;
+    }
+
+    &[readonly] + label:before {
+      background-color: ${({ theme }) => theme?.tokens?.form?.shade};
+    }
+
+    &[readonly] {
+      padding-left: .75em;
+    }
+
   }}
 
   & label {
@@ -175,6 +194,7 @@ export const Container = styled.span.attrs({
     }
 
     & span {
+
       padding: ${(props) => (props.small ? '1.1em 1em' : '1.65em 1em')};
       position: relative;
       display: flex;

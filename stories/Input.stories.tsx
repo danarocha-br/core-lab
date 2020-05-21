@@ -12,7 +12,15 @@ export default {
 export const textOnly = () => (
   <div className="flex vertical">
     <Input id="email" name="email" icon={AiOutlineMail} label="Email" />
-    <Input id="name" name="name" icon={AiOutlineMail} label="Email" small />
+    <Input
+      id="name"
+      name="name"
+      icon={AiOutlineMail}
+      label="Email"
+      small
+      value="Teste"
+      readOnly
+    />
   </div>
 );
 

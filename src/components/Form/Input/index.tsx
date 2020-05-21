@@ -9,10 +9,6 @@ import { FieldProps, FieldMetaProps } from 'formik';
 
 import { Container, Error } from './styles';
 
-interface CustomInputProps {
-  small?: boolean;
-}
-
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   /**
    * This is a prop
@@ -23,6 +19,9 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    */
   label: string;
   id: string;
+  small?: boolean;
+  disabled?: boolean;
+  readOnly?: boolean;
   // field?: React.ComponentType<FieldProps['field']>;
   // touched?: string;
   // error?: boolean;
@@ -32,13 +31,15 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ComponentType<IconBaseProps>;
 }
 
-export const Input: React.FC<InputProps & CustomInputProps> = ({
+export const Input: React.FC<InputProps> = ({
   // field,
   label,
   id,
-  small,
   error,
   icon: Icon,
+  small,
+  disabled,
+  readOnly,
   // form: { touched, errors },
   ...rest
 }) => {
@@ -49,7 +50,6 @@ export const Input: React.FC<InputProps & CustomInputProps> = ({
   const [isFocused, setFocus] = useState(false);
   const [hasValue, setValue] = useState(false);
   const [hasError, setError] = useState(false);
-  const [isDisabled, setDisabled] = useState(false);
 
   const handleInputFocus = useCallback(() => {
     setFocus(true);
@@ -60,18 +60,15 @@ export const Input: React.FC<InputProps & CustomInputProps> = ({
     setValue(!!inputRef.current?.value);
   }, []);
 
-  const handleDisabled = useCallback(() => {
-    setDisabled(true);
-  }, []);
-
   return (
     <div className="flex flex-col w-full m-4">
       <Container
         hasError={hasError}
         isFocused={isFocused}
         hasValue={hasValue}
-        isDisabled={isDisabled}
         small={small}
+        disabled={disabled}
+        readOnly={readOnly}
       >
         <input
           onFocus={handleInputFocus}
@@ -81,6 +78,8 @@ export const Input: React.FC<InputProps & CustomInputProps> = ({
           ref={inputRef}
           type="text"
           id={id}
+          disabled={disabled}
+          readOnly={readOnly}
           {...rest}
         />
         <label htmlFor={id}>
