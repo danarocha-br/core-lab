@@ -9,6 +9,10 @@ import { FieldProps, FieldMetaProps } from 'formik';
 
 import { Container, Error } from './styles';
 
+interface CustomInputProps {
+  small?: boolean;
+}
+
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   /**
    * This is a prop
@@ -18,6 +22,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    * This is a prop
    */
   label: string;
+  id: string;
   // field?: React.ComponentType<FieldProps['field']>;
   // touched?: string;
   // error?: boolean;
@@ -25,13 +30,13 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    * An icon component from to be added from any library.
    */
   icon?: React.ComponentType<IconBaseProps>;
-  size?: string;
 }
 
-export const Input: React.FC<InputProps> = ({
+export const Input: React.FC<InputProps & CustomInputProps> = ({
   // field,
   label,
-  size,
+  id,
+  small,
   error,
   icon: Icon,
   // form: { touched, errors },
@@ -66,6 +71,7 @@ export const Input: React.FC<InputProps> = ({
         isFocused={isFocused}
         hasValue={hasValue}
         isDisabled={isDisabled}
+        small={small}
       >
         <input
           onFocus={handleInputFocus}
@@ -73,13 +79,13 @@ export const Input: React.FC<InputProps> = ({
           // disabled={handleDisabled}
           // {...field}
           ref={inputRef}
-          {...rest}
           type="text"
-          id="input-28"
+          id={id}
+          {...rest}
         />
-        <label htmlFor="input-28">
+        <label htmlFor={id}>
           {Icon && <Icon size={20} />}
-          <span size={size}>{label}</span>
+          <span>{label}</span>
         </label>
 
         {/* {touched[field.name] && errors[field.name] && (

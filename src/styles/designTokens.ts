@@ -34,6 +34,18 @@ export const colors = {
   white: '#ffffff',
 };
 
+export const textSizes = {
+  xs: '.75rem',
+  sm: '.875rem',
+  base: '1rem',
+  lg: '1.125rem',
+  xl: '1.25rem',
+  xxl: '1.5rem',
+  xxxl: '1.875rem',
+  xxxxl: '2.25rem',
+  xxxxxl: '3rem',
+};
+
 export const tokens = {
   primary: {
     light: colors.indigo[900],
@@ -59,6 +71,14 @@ export const tokens = {
       error: colors.red[700],
       text: colors.white,
       placeholder: colors.gray[400],
+    },
+    sizeSmall: {
+      inputTextSize: textSizes.sm,
+      placeholderTextSize: textSizes.sm,
+    },
+    sizeDefault: {
+      inputTextSize: textSizes.base,
+      placeholderTextSize: textSizes.base,
     },
   },
 };
