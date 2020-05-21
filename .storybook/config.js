@@ -4,6 +4,8 @@ import centered from '@storybook/addon-centered/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { withA11y } from '@storybook/addon-a11y';
 import { withThemesProvider } from "themeprovider-storybook";
+import { tokens } from "../src/styles/designTokens";
+
 
 import theme from './theme';
 
@@ -26,48 +28,34 @@ addDecorator(centered);
 const themes = [
   {
     name: 'Light',
-    backgroundColor: '#fff',
-    palette: {
-      Base: {
-        primary: '#453EEB',
+    backgroundColor: tokens.background.light,
+    tokens: {
+        primary: tokens.primary.light,
+      form: {
+        background: tokens.form.light.background,
+        shade: tokens.form.light.shade,
+        text: tokens.form.light.text,
+        border: tokens.form.light.border,
+        placeholder: tokens.form.light.placeholder,
+        error: tokens.form.light.error,
       },
-      Form: {
-        backgroundColor: ' #ECF2FD',
-        effectColor: ' #fff',
-        fontColor: '#323D53',
-        borderColor: 'rgba(194, 203, 219, .7)',
-        placeholderColor: '#667AA3',
-        opacityDisabled: 0.25,
-        error: '#e25a66',
-      },
-      Common: {
-        backgroundColor: '#1a213f',
-        fontColor: '#808ab1',
-        error: '#FF686B'
-      },
+
     }
   },
   {
     name: 'Dark',
-    backgroundColor: '#1F2533',
-    palette: {
-        Base: {
-          primary: '#5577F0'
-        },
-      Form: {
-        backgroundColor: '#323D53',
-        effectColor: 'rgba(255, 255, 255, .1)',
-        fontColor: '#fff',
-        borderColor: 'rgba(255, 255, 255, .2)',
-        placeholderColor: '#D4DBE8',
-        opacityDisabled: 0.25,
-        error: '#FF8082',
+    backgroundColor: tokens.background.dark,
+    tokens: {
+      primary: tokens.primary.dark,
+      form: {
+        background: tokens.form.dark.background,
+        shade: tokens.form.dark.shade,
+        text: tokens.form.dark.text,
+        border: tokens.form.dark.border,
+        placeholder: tokens.form.dark.placeholder,
+        error: tokens.form.dark.error,
       },
-      Common: {
-        backgroundColor: '#1a213f',
-        fontColor: '#808ab1',
-        borderError: '#FF686B'
-      },
+
     }
   }
 ]

@@ -34,28 +34,30 @@ const animateIcon = `
   transform: translate3d(-0.3em, -1.5em, 0) scale3d(0.85, 0.85, 1);
   translateZ(1px);`;
 
+// Styling
+
 export const Container = styled.span.attrs({
   className:
     'relative flex items-center w-full align-top overflow-hidden border rounded-sm',
 })<UiStates>`
-  border-color: ${({ theme }) => theme?.palette?.Form?.borderColor};
+  border-color: ${({ theme }) => theme?.tokens?.form?.border};
   z-index: 1;
 
   ${(props) =>
     props.isFocused &&
     css`
-      border-color: ${({ theme }) => theme?.palette?.Base?.primary};
+      border-color: ${({ theme }) => theme?.tokens?.primary};
     `}
     ${(props) =>
       props.hasError &&
       css`
-        border-color: ${({ theme }) => theme?.palette?.Form?.error};
+        border-color: ${({ theme }) => theme?.tokens?.form?.error};
       `}
 
   & {
     input {
       ${tw`text-lg bg-transparent absolute flex float-right border-none z-50 focus:outline-none`}
-    color: ${({ theme }) => theme?.palette?.Form?.fontColor};
+    color: ${({ theme }) => theme?.tokens?.form?.text};
     padding: 1.24em 1.4em 0;
     -webkit-appearance: none;
 
@@ -64,7 +66,7 @@ export const Container = styled.span.attrs({
       css`
         + label:before {
           ${inputBorder}
-          border-color: ${({ theme }) => theme?.palette?.Form?.effectColor};
+          border-color: ${({ theme }) => theme?.tokens?.form?.shade};
         }
 
         + label > span {
@@ -73,7 +75,7 @@ export const Container = styled.span.attrs({
 
         + label > svg {
           ${animateIcon}
-          color: ${({ theme }) => theme?.palette?.Base?.primary};
+          color: ${({ theme }) => theme?.tokens?.primary};
         }
       `}
 
@@ -82,7 +84,7 @@ export const Container = styled.span.attrs({
       css`
         + label:before {
           ${inputBorder}
-          border-color: ${({ theme }) => theme?.palette?.Form?.effectColor};
+          border-color: ${({ theme }) => theme?.tokens?.form?.shade};
         }
 
         + label > span {
@@ -91,13 +93,13 @@ export const Container = styled.span.attrs({
 
         + label > svg {
           ${animateIcon}
-          color: ${({ theme }) => theme?.palette?.Base?.primary};
+          color: ${({ theme }) => theme?.tokens?.primary};
         }
       `}
 
     &:focus + label:before {
       ${inputBorder}
-      border-color: ${({ theme }) => theme?.palette?.Form?.effectColor};
+      border-color: ${({ theme }) => theme?.tokens?.form?.shade};
     }
 
     &:focus + label > span {
@@ -106,14 +108,14 @@ export const Container = styled.span.attrs({
 
     &:focus + label > svg {
       ${animateIcon}
-      color: ${({ theme }) => theme?.palette?.Base?.primary};
+      color: ${({ theme }) => theme?.tokens?.primary};
     }
   }}
 
   & label {
     ${tw`font-medium text-base text-left flex items-center w-full h-full float-right p-0`};
-    color: ${({ theme }) => theme?.palette?.Form?.placeholderColor};
-    background-color: ${({ theme }) => theme?.palette?.Form?.backgroundColor};
+    color: ${({ theme }) => theme?.tokens?.form?.placeholder};
+    background-color: ${({ theme }) => theme?.tokens?.form?.background};
     padding: 0 1em;
     -webkit-touch-callout: none;
     user-select: none;
@@ -149,6 +151,6 @@ export const Container = styled.span.attrs({
 
 export const Error = styled.span`
   ${tw`text-base pt-2`}
-  color: ${({ theme }) => theme?.palette?.Form?.error};
+  color: ${({ theme }) => theme?.tokens?.form?.error};
 
 `;
