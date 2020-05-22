@@ -7,7 +7,6 @@ import { Input } from '../src';
 
 export default {
   title: 'Form/Input',
-  // component: Input,
 };
 
 const validationSample = Yup.object().shape({
