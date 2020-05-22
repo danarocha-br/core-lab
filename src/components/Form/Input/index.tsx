@@ -5,11 +5,12 @@ import React, {
   useRef,
 } from 'react';
 import { IconBaseProps } from 'react-icons';
-import { AiFillExclamationCircle } from 'react-icons/ai';
+import { AiFillExclamationCircle, AiFillShopping } from 'react-icons/ai';
 import { useField } from 'formik';
 
 import { Container, Error } from './styles';
 import { colors } from '../../../styles/designTokens';
+import { Spinner } from '../../Spinner';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   /**
@@ -24,9 +25,8 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   small?: boolean;
   disabled?: boolean;
   readOnly?: boolean;
-  // field?: React.ComponentType<FieldProps['field']>;
-  // touched?: string;
-  // error?: boolean;
+  loading?: boolean;
+
   /**
    * An icon component from to be added from any library.
    */
@@ -40,6 +40,7 @@ export const Input: React.FC<InputProps> = ({
   small,
   disabled,
   readOnly,
+  loading,
   ...rest
 }) => {
   /**
@@ -72,6 +73,7 @@ export const Input: React.FC<InputProps> = ({
         disabled={disabled}
         readOnly={readOnly}
         hasError={meta.touched && meta.error}
+        loading={loading}
       >
         <input
           onFocus={handleInputFocus}
@@ -79,7 +81,7 @@ export const Input: React.FC<InputProps> = ({
           ref={inputRef}
           type="text"
           id={id}
-          disabled={disabled}
+          disabled={disabled || loading}
           readOnly={readOnly}
           {...field}
           {...rest}
@@ -89,6 +91,11 @@ export const Input: React.FC<InputProps> = ({
           <span>{label}</span>
           {meta.touched && meta.error ? (
             <AiFillExclamationCircle size={20} color={colors.red[900]} />
+          ) : null}
+          {loading ? (
+            <div className="spinner">
+              <Spinner small />
+            </div>
           ) : null}
         </label>
       </Container>

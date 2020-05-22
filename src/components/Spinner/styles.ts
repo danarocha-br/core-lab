@@ -3,6 +3,13 @@ import tw from 'tailwind.macro';
 
 import { colors } from '../../styles/designTokens';
 
+interface UiProps {
+  small?: boolean;
+}
+
+const sizeSmall = '13px';
+const sizeDefault = '32px';
+
 const dash = keyframes`
   0% {
     stroke-dasharray: 0, 150;
@@ -36,8 +43,9 @@ const color = keyframes`
   }
 `;
 
-export const Container = styled.svg`
-  ${tw`h-12 w-12`}
+export const Container = styled.svg<UiProps>`
+  width: ${(props) => (props.small ? sizeSmall : sizeDefault)};
+  height: ${(props) => (props.small ? sizeSmall : sizeDefault)};
   animation: ${rotate} 2.625s linear infinite;
   transform-origin: center;
 

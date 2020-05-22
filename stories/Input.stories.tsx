@@ -13,9 +13,7 @@ const validationSample = Yup.object().shape({
   email: Yup.string()
     .email('Please enter your email address in the format: name@domain.com')
     .required('Please enter your email.'),
-  name: Yup.string()
-    .email('Please enter your email address in the format: name@domain.com')
-    .required('Please enter your email.'),
+  // name: Yup.string(),
 });
 
 export const textOnly = () => (
@@ -31,7 +29,8 @@ textOnly.story = {
   parameters: {
     formik: {
       initialValues: {
-        email: '',
+        email: 'ddd',
+        name: '',
       },
       validationSchema: validationSample,
       // onSubmit: (v) => console.log('I want to log these... ', v),

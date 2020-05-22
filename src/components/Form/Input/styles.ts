@@ -12,6 +12,7 @@ interface UiStates {
   disabled?: boolean;
   readOnly?: boolean;
   hasError?: string | boolean;
+  loading?: boolean;
 }
 /**
  * Global Classes for UI State Animations
@@ -34,7 +35,7 @@ export const Container = styled.span.attrs({
 })<UiStates & UiProps>`
   border-color: ${({ theme }) => theme?.tokens?.form?.border};
   z-index: 1;
-  opacity: ${(props) => (props.disabled ? '0.5' : '1')};
+  opacity: ${(props) => (props.disabled || props.loading ? '0.5' : '1')};
 
 
   &:hover:not([disabled])
@@ -72,7 +73,7 @@ export const Container = styled.span.attrs({
         padding: ${(props) =>
           props.small ? '0.7em 1.4em 0' : '1.24em 1.4em 0'};
         -webkit-appearance: none;
-        opacity: ${(props) => (props.disabled ? '0.5' : '1')};
+        opacity: ${(props) => (props.disabled || props.loading ? '0.5' : '1')};
 
     ${(props) =>
       props.isFocused &&
@@ -147,9 +148,9 @@ export const Container = styled.span.attrs({
           : 'translate3d(-0.8em, -1.5em, 0) scale3d(0.8, 0.8, 1)'};
     }
 
-    &:focus + label > svg,
-    &:disabled + label > svg,
-    &[readonly] + label > svg {
+    &:focus + label > svg:first-child,
+    &:disabled + label > svg:first-child,
+    &[readonly] + label > svg:first-child {
       ${animateIcon}
       transform: ${(props) =>
         props.small
@@ -197,7 +198,6 @@ export const Container = styled.span.attrs({
     }
 
     & span {
-
       padding: ${(props) => (props.small ? '1.1em 1em' : '1.65em 1em')};
       position: relative;
       display: flex;
@@ -208,7 +208,7 @@ export const Container = styled.span.attrs({
       text-rendering: geometricPrecision;
     }
 
-    svg {
+    svg:first-child {
       transition: transform;
       transition-duration: 0.3s;
     }
@@ -218,6 +218,11 @@ export const Container = styled.span.attrs({
       right: 0px;
     }
   }
+  .spinner {
+      position: absolute;
+      right: 8px;
+      top: 5px;
+    }
 `;
 
 export const Error = styled.span`
