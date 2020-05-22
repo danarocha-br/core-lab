@@ -52,7 +52,7 @@ export const tokens = {
     dark: colors.indigo[500],
   },
   background: {
-    light: colors.white,
+    light: colors.gray[100],
     dark: colors.gray[900],
   },
   form: {

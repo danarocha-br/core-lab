@@ -8,12 +8,13 @@ interface UiProps {
 interface UiStates {
   isFocused: boolean;
   hasValue: boolean;
-  hasError: boolean;
   disabled?: boolean;
   readOnly?: boolean;
+  hasError?: string | boolean;
 }
-
-// Global Classes for UI State Animations
+/**
+ * Global Classes for UI State Animations
+ */
 
 const inputBorder = `
   border: 8px solid;
@@ -23,8 +24,9 @@ const inputBorder = `
 const animateIcon = `
   translateZ(1px);`;
 
-// Styling
-
+/**
+ * Styling
+ */
 export const Container = styled.span.attrs({
   className:
     'relative flex items-center w-full align-top overflow-hidden border rounded-sm',
@@ -209,11 +211,16 @@ export const Container = styled.span.attrs({
       transition: transform;
       transition-duration: 0.3s;
     }
+
+    svg:last-child {
+      position: absolute;
+      right: 0px;
+    }
   }
 `;
 
 export const Error = styled.span`
-  ${tw`text-base pt-2`}
+  ${tw`text-xs pt-1`}
   color: ${({ theme }) => theme?.tokens?.form?.error};
 
 `;

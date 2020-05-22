@@ -7,6 +7,7 @@ module.exports = {
     '@storybook/addon-backgrounds/register',
     '@storybook/addon-knobs/register',
     'themeprovider-storybook/register',
+    'storybook-formik/register',
   ],
   webpackFinal: async config => {
     config.module.rules = [
