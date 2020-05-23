@@ -1,16 +1,14 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { AiOutlineMail } from 'react-icons/ai';
-
 import { Button } from '../src';
+import docs from '../src/components/Button/Button.docs.mdx';
 
 export default {
-  title: 'Button',
-  // component: Button,
+  title: 'Components/Button',
+  parameters: {
+    docs: { page: docs },
+    componentSubtitle:
+      'Displays an image that represents a user or organization',
+  },
 };
 
-export const textOnly = () => (
-  <div className="flex vertical">
-    <Button />
-  </div>
-);
+export const primary = () => <Button>hello</Button>;

@@ -3,6 +3,7 @@ import React, {
   useState,
   useCallback,
   useRef,
+  FC,
 } from 'react';
 import { IconBaseProps } from 'react-icons';
 import { AiFillExclamationCircle, AiFillShopping } from 'react-icons/ai';
@@ -33,7 +34,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ComponentType<IconBaseProps>;
 }
 
-export const Input: React.FC<InputProps> = ({
+export const Input: FC<InputProps> = ({
   label,
   id,
   icon: Icon,
@@ -108,3 +109,5 @@ export const Input: React.FC<InputProps> = ({
     </div>
   );
 };
+
+export default Input;

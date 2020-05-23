@@ -6,12 +6,10 @@ import { withA11y } from '@storybook/addon-a11y';
 import { withThemesProvider } from "themeprovider-storybook";
 import { tokens } from "../src/styles/designTokens";
 
-
 import theme from './theme';
 
 import './reset.css';
 
-addDecorator(withA11y);
 
 addParameters({
   viewport: {
@@ -22,6 +20,7 @@ addParameters({
   },
 });
 
+addDecorator(withA11y);
 addDecorator(withInfo);
 addDecorator(centered);
 
@@ -63,3 +62,5 @@ addDecorator(withThemesProvider(themes));
 
 // Import all stories
 configure(require.context('../stories', true, /\.stories\.tsx$/), module);
+configure(require.context('../stories', true, /\.stories\.mdx$/), module);
+configure(require.context('../docs', true, /\.docs\.mdx$/), module);

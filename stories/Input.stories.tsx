@@ -1,12 +1,20 @@
 import React from 'react';
-import { AiOutlineMail } from 'react-icons/ai';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 import withFormik from 'storybook-formik';
 import * as Yup from 'yup';
+import { AiOutlineMail } from 'react-icons/ai';
 
 import { Input } from '../src';
+import docs from '../src/components/Form/Input/Input.docs.mdx';
 
 export default {
   title: 'Form/Input',
+  decorators: [withKnobs],
+  parameters: {
+    docs: { page: docs },
+    componentSubtitle:
+      'Displays an image that represents a user or organization',
+  },
 };
 
 const validationSample = Yup.object().shape({
@@ -18,12 +26,19 @@ const validationSample = Yup.object().shape({
 
 export const textOnly = () => (
   <div className="flex vertical">
-    <Input id="email" name="email" icon={AiOutlineMail} label="Email" />
-    <Input id="name" name="name" icon={AiOutlineMail} label="Email" small />
+    <Input
+      id="email"
+      name="email"
+      icon={AiOutlineMail}
+      label="Email"
+      small={boolean('Size: Small', false)}
+      disabled={boolean('Disabled', false)}
+      loading={boolean('Loading', false)}
+      readOnly={boolean('Readonly', false)}
+    />
   </div>
 );
 
-// storiesOf('Input', module).add('Default', () => <Input />);
 textOnly.story = {
   decorators: [withFormik],
   parameters: {
