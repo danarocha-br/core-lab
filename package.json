@@ -65,6 +65,7 @@
   },
   "dependencies": {
     "formik": "^2.1.4",
+    "polished": "^3.6.3",
     "yup": "^0.29.0"
   }
 }

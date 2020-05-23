@@ -60,15 +60,16 @@ export const Input: React.FC<InputProps> = ({
   }, [setFocus]);
 
   const handleInputBlur = useCallback(() => {
-    setFocus(false);
     setValue(!!inputRef.current?.value);
+    setFocus(false);
   }, [setFocus, setValue]);
 
   return (
     <div className="flex flex-col w-full m-4">
       <Container
-        isFocused={isFocused}
-        hasValue={hasValue}
+        isFocused={!!isFocused}
+        onBlur={handleInputBlur}
+        hasValue={inputRef.current?.value}
         small={small}
         disabled={disabled}
         readOnly={readOnly}
@@ -93,9 +94,9 @@ export const Input: React.FC<InputProps> = ({
             <AiFillExclamationCircle size={20} color={colors.red[900]} />
           ) : null}
           {loading ? (
-            <div className="spinner">
+            <i className="spinner">
               <Spinner small />
-            </div>
+            </i>
           ) : null}
         </label>
       </Container>

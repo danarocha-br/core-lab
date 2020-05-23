@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import tw from 'tailwind.macro';
+import { lighten } from 'polished';
 
 import { tokens } from '../../../styles/designTokens';
 
@@ -8,7 +9,7 @@ interface UiProps {
 }
 interface UiStates {
   isFocused: boolean;
-  hasValue: boolean;
+  hasValue: boolean | string | undefined;
   disabled?: boolean;
   readOnly?: boolean;
   hasError?: string | boolean;
@@ -48,19 +49,19 @@ export const Container = styled.span.attrs({
     border-color: ${({ theme }) => theme?.tokens?.form?.border};
   }
 
-
   ${(props) =>
     props.isFocused &&
     css`
       border-color: ${({ theme }) => theme?.tokens?.primary};
       transition: border-color 0.5s;
     `}
-    ${(props) =>
-      props.hasError &&
-      css`
-        border-color: ${({ theme }) => theme?.tokens?.form?.error};
-        transition: border-color 0.5s;
-      `}
+
+  ${(props) =>
+    props.hasError &&
+    css`
+      border-color: ${({ theme }) => theme?.tokens?.form?.error};
+      transition: border-color 0.5s;
+    `}
 
   & {
     input {
@@ -115,7 +116,7 @@ export const Container = styled.span.attrs({
         + label > span {
           transform: ${
             props.small
-              ? 'translate3d(-0.8em, -1.1em, 0) scale3d(0.75, 0.75, 1)'
+              ? 'translate3d(-0.8em, -1.15em, 0) scale3d(0.75, 0.75, 1)'
               : 'translate3d(-0.8em, -1.5em, 0) scale3d(0.8, 0.8, 1)'
           };
         }
@@ -131,7 +132,34 @@ export const Container = styled.span.attrs({
         }
       `}
 
-    &:focus + label:before,
+      ${(props) =>
+        props.hasError &&
+        css`
+        + label:before {
+          ${inputBorder}
+          border-top-width: ${props.small ? '1.28em' : '1.8em'};
+          border-color: ${({ theme }) => theme?.tokens?.form?.shade};
+        }
+
+        + label > span {
+          transform: ${
+            props.small
+              ? 'translate3d(-0.8em, -1.15em, 0) scale3d(0.75, 0.75, 1)'
+              : 'translate3d(-0.8em, -1.5em, 0) scale3d(0.8, 0.8, 1)'
+          };
+        }
+
+        + label > svg {
+          ${animateIcon}
+          transform: ${
+            props.small
+              ? 'translate3d(-0.3em, -1.2em, 0) scale3d(0.6, 0.6, 1)'
+              : 'translate3d(-0.3em, -1.5em, 0) scale3d(0.85, 0.85, 1)'
+          };
+
+        }
+      `}
+
     &:disabled + label:before,
     &[readonly] + label:before {
       ${inputBorder}
@@ -139,7 +167,6 @@ export const Container = styled.span.attrs({
       border-color: ${({ theme }) => theme?.tokens?.form?.shade};
     }
 
-    &:focus + label > span,
     &:disabled + label > span,
     &[readonly] + label > span {
       transform: ${(props) =>
@@ -148,7 +175,6 @@ export const Container = styled.span.attrs({
           : 'translate3d(-0.8em, -1.5em, 0) scale3d(0.8, 0.8, 1)'};
     }
 
-    &:focus + label > svg:first-child,
     &:disabled + label > svg:first-child,
     &[readonly] + label > svg:first-child {
       ${animateIcon}
@@ -219,14 +245,13 @@ export const Container = styled.span.attrs({
     }
   }
   .spinner {
-      position: absolute;
-      right: 8px;
-      top: 5px;
-    }
+    position: absolute;
+    right: 8px;
+    top: 5px;
+  }
 `;
 
 export const Error = styled.span`
   ${tw`text-xs pt-1`}
   color: ${({ theme }) => theme?.tokens?.form?.error};
-
 `;

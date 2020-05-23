@@ -13,7 +13,7 @@ const validationSample = Yup.object().shape({
   email: Yup.string()
     .email('Please enter your email address in the format: name@domain.com')
     .required('Please enter your email.'),
-  // name: Yup.string(),
+  name: Yup.string(),
 });
 
 export const textOnly = () => (
@@ -29,7 +29,7 @@ textOnly.story = {
   parameters: {
     formik: {
       initialValues: {
-        email: 'ddd',
+        email: '',
         name: '',
       },
       validationSchema: validationSample,
