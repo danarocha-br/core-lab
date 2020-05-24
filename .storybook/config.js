@@ -36,6 +36,7 @@ const themes = [
         border: tokens.form.light.border,
         placeholder: tokens.form.light.placeholder,
         error: tokens.form.light.error,
+        textAddon: tokens.form.light.textAddon,
       },
 
     }
@@ -52,6 +53,7 @@ const themes = [
         border: tokens.form.dark.border,
         placeholder: tokens.form.dark.placeholder,
         error: tokens.form.dark.error,
+        textAddon: tokens.form.dark.textAddon,
       },
 
     }
@@ -60,5 +62,5 @@ const themes = [
 addDecorator(withThemesProvider(themes));
 
 // Import all stories
-configure(require.context('../src', true, /\.stories\.tsx$/), module);
+configure(require.context('../src', true, /\.stories\.(tsx)$/), module);
 configure(require.context('../docs', true, /\.docs\.mdx$/), module);

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import tw from 'tailwind.macro';
-import { lighten } from 'polished';
+import { IconBaseProps } from 'react-icons';
 
 import { tokens } from '../../../styles/designTokens';
 
@@ -15,6 +15,7 @@ interface UiStates {
   hasError?: string | boolean;
   loading?: number;
 }
+
 /**
  * Global Classes for UI State Animations
  */
@@ -67,7 +68,7 @@ export const Container = styled.span.attrs({
 
   & {
     input {
-      ${tw`text-lg bg-transparent absolute flex w-full float-right border-none z-40 focus:outline-none`}
+      ${tw`text-lg bg-transparent w-11/12 absolute flex float-right border-none z-40 focus:outline-none`}
     color: ${({ theme }) => theme?.tokens?.form?.text};
     font-size: ${(props) =>
       props.small ? tokens.form.sizeSmall.inputTextSize : tokens.form.sizeDefault.inputTextSize};
@@ -173,6 +174,7 @@ export const Container = styled.span.attrs({
           : 'translate3d(-0.4em, -1.5em, 0) scale3d(0.8, 0.8, 1)'};
     }
 
+    &:focus + label > svg:first-child,
     &:disabled + label > svg:first-child,
     &[readonly] + label > svg:first-child {
       ${animateIcon}
@@ -238,6 +240,13 @@ export const Container = styled.span.attrs({
     border-color: ${({ theme }) => theme?.tokens?.form?.background};
   }
 
+  .input__addon {
+    ${tw`flex items-center text-sm font-medium absolute right-0 h-full px-3`};
+    color: ${({ theme }) => theme?.tokens?.form?.textAddon};
+    background-color: ${({ theme }) => theme?.tokens?.form?.background};
+    border-left: 7px solid;
+    border-left-color: ${({ theme }) => theme?.tokens?.form?.shade} !important;
+  }
 
 `;
 

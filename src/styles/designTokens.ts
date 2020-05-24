@@ -70,6 +70,7 @@ export const tokens = {
       error: colors.red[900],
       text: colors.gray[900],
       placeholder: colors.gray[700],
+      textAddon: colors.gray[700],
     },
     dark: {
       background: colors.gray[800],
@@ -78,6 +79,7 @@ export const tokens = {
       error: colors.red[700],
       text: colors.white,
       placeholder: colors.gray[400],
+      textAddon: colors.gray[500],
     },
     sizeSmall: {
       inputTextSize: textSizes.sm,

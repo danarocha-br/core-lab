@@ -6,13 +6,11 @@ module.exports = {
     '@storybook/addon-a11y/register',
     '@storybook/addon-backgrounds/register',
     '@storybook/addon-knobs/register',
-    '@storybook/addon-storyshots',
     'themeprovider-storybook/register',
     'storybook-formik/register',
     'storybook-addon-designs/register',
-    '@storybook/addon-storysource',
     {
-      name: "@storybook/addon-docs",
+      name: "@storybook/addon-docs/preset",
       options: {
         configureJSX: true,
       },

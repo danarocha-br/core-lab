@@ -3,9 +3,10 @@ import { withKnobs, boolean } from '@storybook/addon-knobs';
 import withFormik from 'storybook-formik';
 import { withDesign } from 'storybook-addon-designs';
 import * as Yup from 'yup';
-import { AiOutlineMail } from 'react-icons/ai';
+import { AiOutlineMail, AiOutlineGlobal, AiOutlineBgColors } from 'react-icons/ai';
+import { MdEuroSymbol } from 'react-icons/md';
 
-import { Input } from '../../..';
+import { Input, CurrencyInput } from '../../..';
 
 import docs from './Input.docs.mdx';
 
@@ -100,6 +101,69 @@ textOnly.story = {
         id: '123456ABC',
       },
       validationSchema: validationSample,
+    },
+  },
+};
+
+export const withAddons = () => (
+  <div className="flex flex-col">
+    <div>
+      <p className="text-center">With Text Addon</p>
+      <Input
+        id="url"
+        name="url"
+        icon={AiOutlineGlobal}
+        label="Url"
+        aria-labelledby="Your url"
+        small={boolean('Size: Small', false)}
+        disabled={boolean('Disabled', false)}
+        loading={boolean('Loading', false)}
+        readOnly={boolean('Readonly', false)}
+        addonText="core-ui.com"
+      />
+    </div>
+
+    <div>
+      <p className="text-center">With Icon Addon</p>
+      <Input
+        id="color"
+        name="color"
+        label="Color"
+        aria-labelledby="Your url"
+        small={boolean('Size: Small', false)}
+        disabled={boolean('Disabled', false)}
+        loading={boolean('Loading', false)}
+        readOnly={boolean('Readonly', false)}
+        addonIcon={AiOutlineBgColors}
+      />
+    </div>
+
+    <div>
+      <p className="text-center">With Icon Addon</p>
+      <Input
+        id="price"
+        name="price"
+        label="Price"
+        type="number"
+        icon={MdEuroSymbol}
+        aria-labelledby="Your url"
+        small={boolean('Size: Small', false)}
+        disabled={boolean('Disabled', false)}
+        loading={boolean('Loading', false)}
+        readOnly={boolean('Readonly', false)}
+        addonText=".00"
+      />
+    </div>
+  </div>
+);
+
+withAddons.story = {
+  decorators: [withFormik],
+  parameters: {
+    formik: {
+      initialValues: {
+        price: '800',
+      },
     },
   },
 };

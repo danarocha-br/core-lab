@@ -1,6 +1,6 @@
 import React, { InputHTMLAttributes, useState, useCallback, useRef, FC } from 'react';
 import { IconBaseProps } from 'react-icons';
-import { AiFillExclamationCircle, AiFillEye } from 'react-icons/ai';
+import { AiFillExclamationCircle } from 'react-icons/ai';
 import { useField } from 'formik';
 
 import { Container, Error } from './styles';
@@ -47,7 +47,14 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
    * An icon component from to be added from `any library`.
    */
   icon?: React.ComponentType<IconBaseProps>;
-  // ariaLabelledby?: string;
+  /**
+   * Will add an addon to the input with your text content.
+   */
+  addonText?: string;
+  /**
+   * Will add an addon to the input with your icon from `any library`.
+   */
+  addonIcon?: React.ComponentType<IconBaseProps>;
 }
 
 export const Input: FC<InputProps> = ({
@@ -59,6 +66,9 @@ export const Input: FC<InputProps> = ({
   readOnly,
   loading,
   type,
+  addonText,
+  addonIcon: IconAddon,
+  setFieldValue,
   ...rest
 }) => {
   /**
@@ -103,9 +113,11 @@ export const Input: FC<InputProps> = ({
           id={id}
           disabled={disabled || loading}
           readOnly={readOnly}
+          onValueChange={(val) => setFieldValue('numbers', val.floatValue)}
           {...field}
           {...rest}
         />
+
         <label htmlFor={id}>
           {Icon && <Icon size={20} />}
           <span>{label}</span>
@@ -118,6 +130,18 @@ export const Input: FC<InputProps> = ({
             </i>
           ) : null}
         </label>
+
+        {addonText && (
+          <div className="input__addon">
+            <span>{addonText}</span>
+          </div>
+        )}
+
+        {IconAddon && (
+          <div className="input__addon">
+            <IconAddon size={20} />
+          </div>
+        )}
       </Container>
       {meta.touched && meta.error ? (
         <Error>
