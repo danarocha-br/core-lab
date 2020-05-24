@@ -9,6 +9,8 @@ module.exports = {
     '@storybook/addon-storyshots',
     'themeprovider-storybook/register',
     'storybook-formik/register',
+    'storybook-addon-designs/register',
+    '@storybook/addon-storysource',
     {
       name: "@storybook/addon-docs",
       options: {
@@ -36,6 +38,17 @@ module.exports = {
               tsconfigPath: path.resolve(__dirname, '..', 'tsconfig.json'),
             },
           },
+          {
+            loader: require.resolve('@storybook/source-loader'),
+            options: {
+              parser: 'typescript',
+              uglyCommentsRegex: [/^eslint-.*/, /^global.*/],
+              prettierConfig: {
+                printWidth: 100,
+                singleQuote: true,
+              },
+             }
+          ,}
         ]
       }
     ],

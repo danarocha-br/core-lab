@@ -1,12 +1,6 @@
-import React, {
-  InputHTMLAttributes,
-  useState,
-  useCallback,
-  useRef,
-  FC,
-} from 'react';
+import React, { InputHTMLAttributes, useState, useCallback, useRef, FC } from 'react';
 import { IconBaseProps } from 'react-icons';
-import { AiFillExclamationCircle, AiFillShopping } from 'react-icons/ai';
+import { AiFillExclamationCircle, AiFillEye } from 'react-icons/ai';
 import { useField } from 'formik';
 
 import { Container, Error } from './styles';
@@ -15,23 +9,45 @@ import { Spinner } from '../../Spinner';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   /**
-   * This is a prop
+   * Adds a HTML `id` attribute to the input. This is used for linking the HTML with a
+   * [Label].
+   */
+  id: string;
+  /**
+   * The HTML `name` attribute that will be pased to the input.
+   *
    */
   name: string;
   /**
-   * This is a prop
+   * Defines the `label` for the input.
    */
   label: string;
-  id: string;
-  small?: boolean;
-  disabled?: boolean;
-  readOnly?: boolean;
-  loading?: boolean;
-
   /**
-   * An icon component from to be added from any library.
+   * Sets the `type` attribute on the input element. Default is text.
+   */
+  type?: 'email' | 'password' | 'text' | 'search' | 'tel' | 'number';
+  /**
+   * Controls the `height and padding` of the input. Default is `large`.
+   */
+
+  small?: boolean;
+  /**
+   * Visually and functionally `disable` the input.
+   */
+  disabled?: boolean;
+  /**
+   * Adds `readonly` HTML attribute, so users can click, but cannot modify the input.
+   */
+  readOnly?: boolean;
+  /**
+   * Visually and functionally `disable` the input.
+   */
+  loading?: boolean;
+  /**
+   * An icon component from to be added from `any library`.
    */
   icon?: React.ComponentType<IconBaseProps>;
+  // ariaLabelledby?: string;
 }
 
 export const Input: FC<InputProps> = ({
@@ -42,6 +58,7 @@ export const Input: FC<InputProps> = ({
   disabled,
   readOnly,
   loading,
+  type,
   ...rest
 }) => {
   /**
@@ -55,6 +72,7 @@ export const Input: FC<InputProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const [isFocused, setFocus] = useState(false);
   const [hasValue, setValue] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleInputFocus = useCallback(() => {
     setFocus(true);
@@ -62,6 +80,7 @@ export const Input: FC<InputProps> = ({
 
   const handleInputBlur = useCallback(() => {
     setValue(!!inputRef.current?.value);
+
     setFocus(false);
   }, [setFocus, setValue]);
 
@@ -81,7 +100,7 @@ export const Input: FC<InputProps> = ({
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
           ref={inputRef}
-          type="text"
+          type={type}
           id={id}
           disabled={disabled || loading}
           readOnly={readOnly}
@@ -110,4 +129,10 @@ export const Input: FC<InputProps> = ({
   );
 };
 
-export default Input;
+Input.defaultProps = {
+  type: 'text',
+  small: false,
+  disabled: false,
+  readOnly: false,
+  loading: false,
+};

@@ -31,8 +31,7 @@ const animateIcon = `
  * Styling
  */
 export const Container = styled.span.attrs({
-  className:
-    'relative flex items-center w-full align-top overflow-hidden border rounded-sm',
+  className: 'relative flex items-center w-full align-top overflow-hidden border rounded-sm',
 })<UiStates & UiProps>`
   border-color: ${({ theme }) => theme?.tokens?.form?.border};
   z-index: 1;
@@ -45,9 +44,12 @@ export const Container = styled.span.attrs({
     transition: border-color 0.5s;
   }
 
-  &[readonly]:hover {
-    border-color: ${({ theme }) => theme?.tokens?.form?.border};
+  &:read-only:hover
+   {
+    border-color: ${({ theme }) => theme?.tokens?.inputBorder};
+    transition: border-color 0.5s;
   }
+
 
   ${(props) =>
     props.isFocused &&
@@ -65,14 +67,11 @@ export const Container = styled.span.attrs({
 
   & {
     input {
-      ${tw`text-lg bg-transparent absolute flex float-right border-none z-50 focus:outline-none`}
+      ${tw`text-lg bg-transparent absolute flex w-full float-right border-none z-40 focus:outline-none`}
     color: ${({ theme }) => theme?.tokens?.form?.text};
     font-size: ${(props) =>
-      props.small
-        ? tokens.form.sizeSmall.inputTextSize
-        : tokens.form.sizeDefault.inputTextSize};
-        padding: ${(props) =>
-          props.small ? '0.7em 1.4em 0' : '1.24em 1.4em 0'};
+      props.small ? tokens.form.sizeSmall.inputTextSize : tokens.form.sizeDefault.inputTextSize};
+        padding: ${(props) => (props.small ? '0.7em 1.4em 0' : '1.24em 1.4em 0')};
         -webkit-appearance: none;
         opacity: ${(props) => (props.disabled || props.loading ? '0.5' : '1')};
 
@@ -160,7 +159,6 @@ export const Container = styled.span.attrs({
         }
       `}
 
-    &:disabled + label:before,
     &[readonly] + label:before {
       ${inputBorder}
       border-top-width: ${(props) => (props.small ? '1.28em' : '1.8em')};
@@ -171,8 +169,8 @@ export const Container = styled.span.attrs({
     &[readonly] + label > span {
       transform: ${(props) =>
         props.small
-          ? 'translate3d(-0.8em, -1.15em, 0) scale3d(0.75, 0.75, 1)'
-          : 'translate3d(-0.8em, -1.5em, 0) scale3d(0.8, 0.8, 1)'};
+          ? 'translate3d(-0.4em, -1.15em, 0) scale3d(0.75, 0.75, 1)'
+          : 'translate3d(-0.4em, -1.5em, 0) scale3d(0.8, 0.8, 1)'};
     }
 
     &:disabled + label > svg:first-child,
@@ -185,8 +183,7 @@ export const Container = styled.span.attrs({
       color: ${({ theme }) => theme?.tokens?.primary};
     }
 
-    &:disabled,
-    &[readonly] {
+    &:disabled {
       cursor: not-allowed;
     }
 
@@ -194,18 +191,12 @@ export const Container = styled.span.attrs({
       background-color: ${({ theme }) => theme?.tokens?.form?.shade};
     }
 
-    &[readonly] {
-      padding-left: .75em;
-    }
-
   }}
 
   & label {
     ${tw`font-medium text-left flex items-center w-full h-full float-right p-0`};
     font-size:  ${(props) =>
-      props.small
-        ? tokens.form.sizeSmall.inputTextSize
-        : tokens.form.sizeDefault.inputTextSize};
+      props.small ? tokens.form.sizeSmall.inputTextSize : tokens.form.sizeDefault.inputTextSize};
     color: ${({ theme }) => theme?.tokens?.form?.placeholder};
     background-color: ${({ theme }) => theme?.tokens?.form?.background};
     padding: 0 1em;
@@ -213,21 +204,14 @@ export const Container = styled.span.attrs({
     user-select: none;
 
     &::before {
+      ${tw`border-solid border-transparent absolute top-0 left-0 w-full h-full`};
       content: '';
-      border: solid transparent;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
       transition: border-width 0.3s, border-color 0.3s;
     }
 
     & span {
+      ${tw`flex w-full relative`};
       padding: ${(props) => (props.small ? '1.1em 1em' : '1.65em 1em')};
-      position: relative;
-      display: flex;
-      width: 100%;
       transition: transform;
       transition-duration: 0.3s;
       transform-origin: 0% 50%;
@@ -240,15 +224,21 @@ export const Container = styled.span.attrs({
     }
 
     svg:last-child {
-      position: absolute;
+      ${tw`absolute`};
       right: 0px;
     }
   }
   .spinner {
-    position: absolute;
+    ${tw`absolute`};
     right: 8px;
     top: 5px;
   }
+
+  input:disabled + label:before {
+    border-color: ${({ theme }) => theme?.tokens?.form?.background};
+  }
+
+
 `;
 
 export const Error = styled.span`

@@ -10,7 +10,6 @@ import theme from './theme';
 
 import './reset.css';
 
-
 addParameters({
   viewport: {
     viewports: INITIAL_VIEWPORTS,
@@ -61,6 +60,5 @@ const themes = [
 addDecorator(withThemesProvider(themes));
 
 // Import all stories
-configure(require.context('../stories', true, /\.stories\.tsx$/), module);
-configure(require.context('../stories', true, /\.stories\.mdx$/), module);
+configure(require.context('../src', true, /\.stories\.tsx$/), module);
 configure(require.context('../docs', true, /\.docs\.mdx$/), module);

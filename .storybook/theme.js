@@ -1,7 +1,7 @@
 import { create } from '@storybook/theming';
 
 export default create({
-  base: 'light',
+  base: 'dark',
 
   colorPrimary: 'hotpink',
   colorSecondary: '#453EEB',
@@ -10,14 +10,15 @@ export default create({
   appContentBg: '#1F2533',
   appBorderColor: '#667AA3',
   appBorderRadius: 20,
+  appTextColor: '#FBFCFF',
 
-  textColor: '#fff',
+  textColor: '#FBFCFF',
   fontBase: '"DM Sans", sans-serif',
   fontCode: 'monospace',
 
   // Toolbar default and active colors
-  barTextColor: '#FBFCFF',
-  barSelectedColor: '#ffffff',
+  barTextColor: '#DAE5FB',
+  barSelectedColor: '#fff',
   barBg: '#323D53',
 
   // Form colors
