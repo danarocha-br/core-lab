@@ -13,7 +13,7 @@ interface UiStates {
   disabled?: boolean;
   readOnly?: boolean;
   hasError?: string | boolean;
-  loading?: boolean;
+  loading?: number;
 }
 /**
  * Global Classes for UI State Animations

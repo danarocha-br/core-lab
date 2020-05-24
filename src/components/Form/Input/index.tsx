@@ -72,7 +72,6 @@ export const Input: FC<InputProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const [isFocused, setFocus] = useState(false);
   const [hasValue, setValue] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
 
   const handleInputFocus = useCallback(() => {
     setFocus(true);
@@ -87,14 +86,14 @@ export const Input: FC<InputProps> = ({
   return (
     <div className="flex flex-col w-full m-4">
       <Container
-        isFocused={!!isFocused}
+        isFocused={isFocused}
         onBlur={handleInputBlur}
         hasValue={inputRef.current?.value}
         small={small}
         disabled={disabled}
         readOnly={readOnly}
         hasError={meta.touched && meta.error}
-        loading={loading}
+        loading={Number(loading)}
       >
         <input
           onFocus={handleInputFocus}
